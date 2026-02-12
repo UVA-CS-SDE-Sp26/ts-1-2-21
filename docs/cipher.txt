@@ -1,0 +1,35 @@
+Documentation for Cipher feature of TopSecret Project.
+
+Purpose:
+Convert encrypted text into readable text using the key in ciphers folder.
+
+An alternate key can be provided as the second command-line argument.
+
+Key format:
+The key has to contain two lines: 1. original characters and 2. encrypted characters.
+
+Validation rules:
+- The key must contain two lines.
+- Lines have to be the same length.
+- No duplicates allowed.
+If these rules are not followed the program throws an error and exits.
+
+Key:
+- Load the key provided.
+- Validate the key.
+- Decipher the contents.
+
+Decipher Behavior:
+- Replace each encrypted character using the key
+- Leave characters not in the key unchanged
+
+Integration:
+- ProgramControl calls Cipher after FileHandler returns file contents
+- Cipher returns readable text
+- Cipher does not access mission files directly
+
+Testing:
+- Valid key loads correctly
+- Invalid key throws error
+- Text deciphers correctly
+- Unknown characters remain unchanged
