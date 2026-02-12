@@ -1,0 +1,14 @@
+Documentation for User Interface feature of TopSecret project
+
+Responsible for command-line arguments
+
+Cases:
+
+no args: java TopSecret
+--list numbered files available to display
+
+one arg: java TopSecret file1
+--display contents of file1 to screen, use default key to decrypt
+
+two args: java TopSecret file1 cipher2
+--display contents of file1 to screen, use cipher2 key to decrypt
