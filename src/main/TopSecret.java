@@ -3,7 +3,22 @@
  */
 public class TopSecret {
     public static void main(String[] args) {
+
         int[] commandLineInfo = commandLineInterface(args);
+
+        if (commandLineInfo[0] == 0) {
+            List<String> files = FileHandler.listFiles();
+            for (int i = 0; i < files.size(); i++) {
+                System.out.println(String.format("%02d %s", i + 1, files.get(i)));
+            }
+        }
+        else if (commandLineInfo[0] == 1 || commandLineInfo[0] == 2) {
+            String content = FileHandler.readFile(commandLineInfo[1]);
+            System.out.println(content);
+        }
+        else {
+            System.out.println("Invalid command line arguments.");
+        }
     }
 
     // takes in command line args, returns number of command line args (index 0), file to read (if applicable, index 0), and cipher to use (if applicable, index 2)
@@ -31,5 +46,8 @@ public class TopSecret {
         }
 
         return commandLineArgs;
+
+
+
     }
 }
