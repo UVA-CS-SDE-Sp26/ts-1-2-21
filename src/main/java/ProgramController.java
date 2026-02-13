@@ -11,7 +11,7 @@ public class ProgramController {
     }
 
     public String listFiles() {
-        List<String> files = fileHandler.getFileList();
+        List<String> files = fileHandler.listFiles();
 
         if (files == null || files.isEmpty()) {
             return "No files available.";
@@ -27,17 +27,14 @@ public class ProgramController {
 
     public String getFileContent(int fileNumber, String keyFile) {
         // Validate file number
-        List<String> files = fileHandler.getFileList();
+        List<String> files = fileHandler.listFiles();
 
         if (fileNumber < 1 || fileNumber > files.size()) {
             return "Error: Invalid file number.";
         }
 
-        // Get filename
-        String filename = files.get(fileNumber - 1);
-
         // Read file content
-        String content = fileHandler.readFile(filename);
+        String content = fileHandler.readFile(fileNumber);
 
         if (content == null) {
             return "Error: Could not read file.";
