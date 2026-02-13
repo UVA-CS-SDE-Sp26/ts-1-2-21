@@ -4,7 +4,7 @@ import java.util.*;
 
 public class FileHandler {
 
-    public static List<String> listFiles() {
+    public List<String> listFiles() {
         List<String> fileNames = new ArrayList<>();
         File folder = new File("data");
         File[] listOfFiles = folder.listFiles();
@@ -21,7 +21,7 @@ public class FileHandler {
         return fileNames;
     }
 
-    public static String readFile(int fileNumber) {
+    public String readFile(int fileNumber) {
         File folder = new File("data");
         File[] listOfFiles = folder.listFiles();
 
