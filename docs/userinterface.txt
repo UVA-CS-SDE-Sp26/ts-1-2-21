@@ -1,17 +1,37 @@
-Documentation for User Interface feature of TopSecret project
+USER INTERFACE CLASS DOCUMENTATION
+----------------------------------
 
-Responsible for command-line arguments
+OVERVIEW:
+The UserInterface class serves as the command-line entry point for the TopSecret application. It parses user input from the terminal and coordinates with the ProgramController to list available files or display deciphered content.
 
-Returns number of command line args @index 0, file number to read @index 1, and cipher number to use @index 2
+DEPENDENCIES:
+- ProgramController: Manages high-level logic and data flow.
+- FileHandler: Handles disk-level file operations.
+- Cipher: Provides decryption logic using substitution keys.
 
-Cases:
+MAIN METHOD:
+commandLineInterface(String[] info)
+- Parameters: info (String array) - The raw command-line arguments passed from the main method.
+- Exceptions: Throws FileNotFoundException if specified data or key files are missing.
 
-no args: java TopSecret
---list numbered files available to display
+USAGE MODES:
+The interface behavior changes based on the number of arguments provided in the terminal:
 
-one arg: java TopSecret file1
---display contents of file1 to screen, use default key to decrypt
+1. List Mode (0 Arguments)
+   - Command: java TopSecret
+   - Action: Calls ProgramController to fetch a formatted list of all files found in the data directory.
+   - Output: Prints a numbered list of filenames (e.g., "01 filea.txt").
 
-two args: java TopSecret file1 cipher2
---display contents of file1 to screen, use cipher2 key to decrypt
+2. Read/Decipher Mode - Default Key (1 Argument)
+   - Command: java TopSecret [FileNumber]
+   - Action: Converts the argument to an integer and retrieves the deciphered content using the system's default key.
+   - Output: Prints the decrypted text of the requested file.
 
+3. Read/Decipher Mode - Custom Key (2 Arguments)
+   - Command: java TopSecret [FileNumber] [KeyFilePath]
+   - Action: Retrieves the file content but applies a specific cipher key located at the provided path instead of the default.
+   - Output: Prints the decrypted text using the custom key.
+
+ERROR HANDLING:
+- Invalid Arguments: If more than 2 arguments are provided, the system displays: "Please enter 0-2 command line arguments."
+- Validation: The interface relies on the ProgramController to validate if the provided file number exists within the current directory.
