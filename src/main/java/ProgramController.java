@@ -40,7 +40,7 @@ public class ProgramController {
             return "Error: Could not read file.";
         }
 
-        // Decipher if cipher is available
+        // Decipher
         if (cipher != null) {
             String key = (keyFile != null) ? keyFile : DEFAULT_KEY;
             try {
