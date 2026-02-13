@@ -7,9 +7,7 @@ public class Cipher {
     private String normalChars;
     private String encodedChars;
 
-    public Cipher(String path) throws FileNotFoundException {
-        loadKey(path);
-    }
+    public Cipher() throws FileNotFoundException {}
 
     private void loadKey(String path) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(path));
