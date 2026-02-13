@@ -1,7 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import package_name.Cipher;
+import java.io.File;
+import java.io.FileWriter;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CipherTest {
@@ -14,22 +16,45 @@ public class CipherTest {
     }
 
     @Test
-    void testCipherLoads() {
-        assertNotNull(cipher);
+    void testCipherLoadsSuccessfully() {
+        assertNotNull(cipher, "Cipher should initialize with a valid key file");
     }
 
     @Test
     void testDecipherSingleCharacter() {
-        assertEquals("a", cipher.decipher("b"));
+        assertEquals("a", cipher.decipher("b"),
+                "Encoded 'b' should map back to 'a'");
     }
 
     @Test
-    void testDecipherWord() {
-        assertEquals("0ab", cipher.decipher("abc"));
+    void testDecipherMultipleCharacters() {
+        assertEquals("0ab", cipher.decipher("abc"),
+                "Should correctly decipher multiple characters in sequence");
     }
 
     @Test
-    void testDecipherKeepsUnknownCharacters() {
-        assertEquals("a!", cipher.decipher("b!"));
+    void testDecipherNumbers() {
+        assertEquals("012", cipher.decipher("123"),
+                "Numbers should rotate back correctly");
+    }
+
+    @Test
+    void testDecipherMixedString() {
+        String result = cipher.decipher("bC1!");
+        assertEquals("aB0!", result,
+                "Should decipher letters and numbers but keep unknown characters");
+    }
+
+    @Test
+    void testDuplicateCharacterInKeyThrowsException() throws Exception {
+        File badKey = File.createTempFile("badkey", ".txt");
+        FileWriter writer = new FileWriter(badKey);
+        writer.write("aabc\n");   // duplicate 'a'
+        writer.write("bcde\n");
+        writer.close();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Cipher(badKey.getAbsolutePath());
+        }, "Duplicate characters in key should throw exception");
     }
 }
