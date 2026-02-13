@@ -6,7 +6,7 @@ public class FileHandler {
 
     public List<String> listFiles() {
         List<String> fileNames = new ArrayList<>();
-        File folder = new File("data");
+        File folder = new File("/Users/tessajoseph/Desktop/ts-1-2-21/data");
         File[] listOfFiles = folder.listFiles();
 
         if (listOfFiles != null) {
@@ -22,7 +22,7 @@ public class FileHandler {
     }
 
     public String readFile(int fileNumber) {
-        File folder = new File("data");
+        File folder = new File("/Users/tessajoseph/Desktop/ts-1-2-21/data");
         File[] listOfFiles = folder.listFiles();
 
         if (listOfFiles != null && fileNumber > 0 && fileNumber <= listOfFiles.length) {
