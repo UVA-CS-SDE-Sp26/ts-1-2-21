@@ -1,0 +1,35 @@
+PROGRAM CONTROL
+
+The ProgramController class connects the UserInterface to the FileHandler and Cipher:
+- Receives requests from UserInterface
+- Requests file operations from FileHandler
+- Requests deciphering from Cipher
+- Returns formatted results back to UserInterface
+
+METHODS:
+1. listFiles() - Returns numbered list of available files
+2. getFileContent(int fileNumber) - Returns file content using default key
+3. getFileContent(int fileNumber, String keyFile) - Returns content using custom key
+
+TESTING PLAN:
+
+1. testListFiles()
+   - Verify correct numbered listing of files
+   - Verify proper formatting
+   - Mock FileHandler to return test file list
+
+2. testGetFileContent_Success()
+   - Test complete successful path
+   - Mock FileHandler to return encrypted content
+   - Mock Cipher to return decrypted text
+   - Verify final decrypted result is returned
+
+3. testGetFileContent_InvalidFileNumber()
+   - Test error handling for invalid file numbers
+   - Verify appropriate error message returned
+   - Test with file number outside valid range
+
+4. testGetFileContent_WithCustomKey()
+   - Verify custom cipher key is passed to Cipher
+   - Mock Cipher with custom key parameter
+   - Verify the custom key path is used correctly
