@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.crypto.Cipher;
 import java.io.File;
 import java.io.FileWriter;
 

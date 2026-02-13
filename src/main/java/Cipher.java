@@ -49,7 +49,9 @@ public class Cipher {
         }
     }
 
-    public String decipher(String message) {
+    public String decipher(String message, String keyPath) throws FileNotFoundException {
+        loadKey(keyPath);
+
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < message.length(); i++) {
