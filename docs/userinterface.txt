@@ -2,6 +2,8 @@ Documentation for User Interface feature of TopSecret project
 
 Responsible for command-line arguments
 
+Returns number of command line args @index 0, file number to read @index 1, and cipher number to use @index 2
+
 Cases:
 
 no args: java TopSecret
