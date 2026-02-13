@@ -1,6 +1,8 @@
+import java.io.FileNotFoundException;
+
 public class UserInterface {
     // takes in command line args, returns number of command line args (index 0), file to read (if applicable, index 0), and cipher to use (if applicable, index 2)
-    public void commandLineInterface(String[] info) {
+    public void commandLineInterface(String[] info) throws FileNotFoundException {
         // for program controller
         int fileToBeRead;
         String keyFile;
